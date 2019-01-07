@@ -1,3 +1,99 @@
 <resources>
     <string name="app_name">Comic Book App</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Batman</string>
+    <string name="slide_1_desc">The watchful protector of the Gotham city</string>
+
+    <string name="slide_2_title">Superman</string>
+    <string name="slide_2_desc">Strongest man of the universe</string>
+
+    <string name="slide_3_title">Wonder Woman</string>
+    <string name="slide_3_desc">The ferocious princess from Themiscyra</string>
+
+    <string name="slide_4_title">Aquaman</string>
+    <string name="slide_4_desc">The undisputed king of the sea</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="welcome_screen_1">Welcome Screen 1</string>
+    <string name="welcome_screen_2">Welcome Screen 2</string>
+    <string name="welcome_slide_3">Welcome Slide 3</string>
+    <string name="welcome_slide_4">Welcome Slide 4</string>
+    <string name="wrong_text">Something went wrong</string>
+
+    <string name="action_sign_in_short">Register</string>
+    <string name="email">Email</string>
+    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="send_password_reset_email">Send Password reset email</string>
+    <string name="remove_user">Remove user</string>
+    <string name="new_pass">New Password</string>
+    <string name="title_activity_profile">Firebase</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_link_to_register">New to Visa Status? Register Now!</string>
+    <string name="btn_link_to_login">Already registered. Login Me!</string>
+    <string name="title_activity_reset_password">ResetPasswordActivity</string>
+    <string name="btn_forgot_password">Forgot your password?</string>
+    <string name="btn_reset_password">Reset Password</string>
+    <string name="btn_back">Back</string>
+    <string name="hint_new_email">New Email</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="forgot_password_msg">We just need your registered Email Id to send you password reset instructions.</string>
+    <string name="check_status">Check Status</string>
+    <string name="app_status_heading">Enter Your Application ID</string>
+    <string name="notification_title">Visa Buddy</string>
+    <string name="notification_text">Your application status is changed</string>
+    <string name="news_notification_text">Know latest news about Visa</string>
+    <string name="blog_notification_text">Check out the latest post about visa</string>
+    <string name="status_banner">Your application status is: </string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="popup_text">Get notified on status change?</string>
+    <string name="news_popup_text">Get notified on news about visa?</string>
+    <string name="blog_popup_text">Get notified when a new blog is published?</string>
+    <string name="popup_yes">Yes</string>
+    <string name="popup_no">No</string>
+    <string name="popup_allow_permission">This app will save your Application ID in your phone</string>
+    <string name="popup_allow">Allow</string>
+    <string name="popup_deny">Deny</string>
+
+    <string name="hint_phone_number">Phone Number | e.g. +911234567890</string>
+    <string name="hint_verification_code">Verification Code</string>
+    <string name="start_phone_auth">Generate OTP</string>
+    <string name="verify_phone_auth">Verify</string>
+    <string name="resend_phone_auth">Resend</string>
+    <string name="phone_login">Phone Login</string>
+    <string name="your_searched_cases">Your searched cases</string>
+    <string name="delete_all">Delete All</string>
+    <string name="back">Back</string>
+    <string name="search_news_text">Search News</string>
+    <string name="bookmark_text">Bookmark</string>
+    <string name="add_to_favorites_text">Add to Favorites</string>
+    <string name="read_more_text">Read More</string>
+
+    <string name="sign_up_label">Sign Up</string>
+    <string name="log_in_label">Log In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="password_hint">Password</string>
+    <string name="email_hint">Email</string>
+    <string name="confirm_hint">Confirm Password</string>
+    <string name="proceed_text">Proceed</string>
+    <string name="logo">LOGO</string>
+    <string name="scrolling_background_text">Scrolling Background Text</string>
+    <string name="thumbnail">Thumbnail</string>
 </resources>
