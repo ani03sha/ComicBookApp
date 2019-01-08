@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <!--<item
+        <item
             android:id="@+id/nav_zero_fragment"
-            android:title="@string/case_history_text" />
+            android:title="@string/comics" />
         <item
             android:id="@+id/nav_first_fragment"
-            android:title="@string/visa_news_text" />
+            android:title="@string/new_arrivals" />
         <item
             android:id="@+id/nav_second_fragment"
-            android:title="@string/check_status_text" />
+            android:title="@string/trivia" />
         <item
             android:id="@+id/nav_third_fragment"
             android:title="@string/edit_profile_text" />
         <item
             android:id="@+id/nav_fourth_fragment"
-            android:title="@string/read_blogs_text" />
+            android:title="@string/about_us" />
         <item
             android:id="@+id/nav_fifth_fragment"
-            android:title="@string/reset_country_text" />-->
+            android:title="@string/devloper" />
     </group>
 </menu>
