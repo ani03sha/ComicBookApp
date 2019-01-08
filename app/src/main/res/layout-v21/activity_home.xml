@@ -45,8 +45,7 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorAccent"
-            android:indeterminateTintMode="src_atop"
-            tools:targetApi="lollipop" />
+            android:indeterminateTintMode="src_atop" />
 
     </LinearLayout>
 
