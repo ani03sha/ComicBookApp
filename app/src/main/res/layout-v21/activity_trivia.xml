@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
-    android:background="@drawable/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".TriviaActivity">
 
     <LinearLayout
@@ -23,6 +23,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbars="vertical" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -31,8 +45,7 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorAccent"
-            android:indeterminateTintMode="src_atop"
-            tools:targetApi="lollipop" />
+            android:indeterminateTintMode="src_atop" />
 
     </LinearLayout>
 
