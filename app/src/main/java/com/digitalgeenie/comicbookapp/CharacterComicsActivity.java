@@ -15,11 +15,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ProgressBar;
 
-import com.digitalgeenie.comicbookapp.adapters.HomeAdapter;
-import com.digitalgeenie.comicbookapp.models.HomeModel;
+import com.digitalgeenie.comicbookapp.adapters.CharacterComicsAdapter;
+import com.digitalgeenie.comicbookapp.models.CharacterComicsModel;
 import com.digitalgeenie.comicbookapp.utils.ToastUtil;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,22 +32,28 @@ import java.util.List;
 import static com.digitalgeenie.comicbookapp.utils.navigationdrawer.NavigationDrawerUtil.setupDrawerContent;
 import static com.digitalgeenie.comicbookapp.utils.network.Connectivity.isConnected;
 
-public class HomeActivity extends AppCompatActivity {
+public class CharacterComicsActivity extends AppCompatActivity {
 
-    private List<HomeModel> itemList;
+    private List<CharacterComicsModel> itemList;
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
+    private ProgressBar progressBar;
     private ActionBarDrawerToggle drawerToggle;
-
+    private DatabaseReference databaseReference;
+    private CharacterComicsAdapter characterComicsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        FirebaseDatabase.getInstance().getReference().keepSynced(true);
+        setContentView(R.layout.activity_character_comics);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        progressBar = findViewById(R.id.progressBar);
+
+        String character = getIntent()
+                .getStringExtra("characterName")
+                .toLowerCase()
+                .replaceAll(" ", "");
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,33 +64,22 @@ public class HomeActivity extends AppCompatActivity {
         NavigationView nvDrawer = findViewById(R.id.nvView);
         setupDrawerContent(mDrawer, this, nvDrawer);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         if (isConnected(this)) {
             itemList = new LinkedList<>();
-            prepareView();
+            prepareView(character);
         } else {
             ToastUtil.longToast("Sorry! Please check your internet connection", this);
         }
 
-        HomeAdapter homeAdapter = new HomeAdapter(this, itemList);
+        characterComicsAdapter = new CharacterComicsAdapter(this, itemList);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(), true));
+        recyclerView.addItemDecoration(new CharacterComicsActivity.GridSpacingItemDecoration(2, dpToPx(), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(homeAdapter);
-    }
-
-    private void prepareView() {
-
-        HomeModel homeModel1 = new HomeModel("Trivia", R.drawable.trivia);
-        HomeModel homeModel2 = new HomeModel("Comics", R.drawable.comics);
-        HomeModel homeModel3 = new HomeModel("New Arrivals", R.drawable.new_arrivals);
-        HomeModel homeModel4 = new HomeModel("Store Locator", R.drawable.store_locator);
-
-        itemList.add(homeModel1);
-        itemList.add(homeModel2);
-        itemList.add(homeModel3);
-        itemList.add(homeModel4);
+        recyclerView.setAdapter(characterComicsAdapter);
     }
 
     /**
@@ -88,6 +88,52 @@ public class HomeActivity extends AppCompatActivity {
     private int dpToPx() {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, r.getDisplayMetrics()));
+    }
+
+    private void prepareView(String character) {
+
+        databaseReference.child("comics")
+                .orderByChild("character")
+                .equalTo(character)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot comicsSnapshot : dataSnapshot.getChildren()) {
+
+                            progressBar.setVisibility(View.INVISIBLE);
+
+                            String title = comicsSnapshot.child("title").getValue(String.class);
+                            String price = comicsSnapshot.child("price").getValue(String.class);
+                            String thumbnail = comicsSnapshot.child("thumbnailUrl").getValue(String.class);
+
+                            itemList.add(new CharacterComicsModel(title, price, thumbnail));
+                        }
+
+                        characterComicsAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private ActionBarDrawerToggle setupDrawerToggle() {
+        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
     /**
@@ -126,21 +172,5 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        drawerToggle.onConfigurationChanged(newConfig);
     }
 }
