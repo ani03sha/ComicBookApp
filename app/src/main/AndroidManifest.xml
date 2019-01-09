@@ -29,7 +29,8 @@
         <activity android:name=".TriviaActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".WebViewActivity" />
-        <activity android:name=".StoreLocatorActivity"></activity>
+        <activity android:name=".StoreLocatorActivity" />
+        <activity android:name=".TriviaDetailsActivity" />
     </application>
 
 </manifest>

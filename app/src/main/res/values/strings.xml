@@ -110,4 +110,5 @@
     <string name="edit_profile_text">Edit Profile</string>
     <string name="about_us">About Us</string>
     <string name="devloper">Developer</string>
+    <string name="picture_transition_name">picture transition name</string>
 </resources>
