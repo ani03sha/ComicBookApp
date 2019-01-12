@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.digitalgeenie.comicbookapp">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -11,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +38,8 @@
         <activity android:name=".WebViewActivity" />
         <activity android:name=".StoreLocatorActivity" />
         <activity android:name=".TriviaDetailsActivity" />
-        <activity android:name=".CharacterComicsActivity"></activity>
+        <activity android:name=".CharacterComicsActivity" />
+        <activity android:name=".MapsActivity" />
     </application>
 
 </manifest>
